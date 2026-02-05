@@ -1,0 +1,12 @@
+# 繁體中文語系檔案
+# 這裡只需要覆蓋需要自訂的翻譯
+# Chirpy 主題已內建 zh-TW 語系支援
+
+# 如需自訂，可在此覆蓋
+# 例如：
+# tabs:
+#   home: 首頁
+#   categories: 分類
+#   tags: 標籤
+#   archives: 歸檔
+#   about: 關於

@@ -1,9 +1,11 @@
 ---
-layout: default
-title: 安裝流程
+title: OpenClaw 安裝流程
+date: 2026-02-05 10:00:00 +0800
+categories: [部署指南, 安裝教學]
+tags: [openclaw, linode, nodejs, systemd, chrome, playwright]
+pin: true
+toc: true
 ---
-
-# OpenClaw 安裝流程
 
 ## 費用分析
 
@@ -17,24 +19,82 @@ title: 安裝流程
 | Google AI Pro | 優惠價 | NT$3,250 | 年繳 |
 | Google AI Pro | 原價 | NT$7,800 | 年繳 |
 
-> **提示**：初學者可先使用 1C2G 方案，若效能不足再升級。
+> 初學者可先使用 1C2G 方案，若效能不足再升級。
+{: .prompt-tip }
 
 ---
 
 ## 基本安裝步驟
 
-1. 架設 Linode 主機
-2. ssh 連線到主機
-3. `apt update && apt install curl -y`
-4. `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash`
-5. `source ~/.bashrc`
-6. `nvm -v`
-7. `nvm install --lts`
-8. `node -v`
-9. `apt update && apt install git -y`
-10. `npm install -g @google/gemini-cli`（選用）
-11. `npm i -g openclaw@latest`
-12. `openclaw onboard --install-daemon`
+### 1. 架設 Linode 主機
+
+前往 [Linode](https://www.linode.com/) 建立一台 Linux 主機。
+
+### 2. SSH 連線到主機
+
+```bash
+ssh root@YOUR_SERVER_IP
+```
+
+### 3. 安裝必要套件
+
+```bash
+apt update && apt install curl -y
+```
+
+### 4. 安裝 NVM（Node Version Manager）
+
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
+```
+
+### 5. 重新載入環境設定
+
+```bash
+source ~/.bashrc
+```
+
+### 6. 確認 NVM 安裝
+
+```bash
+nvm -v
+```
+
+### 7. 安裝 Node.js LTS 版本
+
+```bash
+nvm install --lts
+```
+
+### 8. 確認 Node.js 版本
+
+```bash
+node -v
+```
+
+### 9. 安裝 Git
+
+```bash
+apt update && apt install git -y
+```
+
+### 10. 安裝 Gemini CLI（選用）
+
+```bash
+npm install -g @google/gemini-cli
+```
+
+### 11. 安裝 OpenClaw
+
+```bash
+npm i -g openclaw@latest
+```
+
+### 12. 執行 OpenClaw 初始化
+
+```bash
+openclaw onboard --install-daemon
+```
 
 ---
 
@@ -54,7 +114,9 @@ mkdir -p ~/.config/systemd/user
 nano ~/.config/systemd/user/openclaw-gateway.service
 ```
 
-### 15. 確認是否有以下內容
+### 15. 服務設定檔內容
+
+確認檔案包含以下內容：
 
 ```ini
 [Unit]
@@ -70,6 +132,7 @@ RestartSec=5
 [Install]
 WantedBy=default.target
 ```
+{: file="~/.config/systemd/user/openclaw-gateway.service" }
 
 ### 16. 重新載入 systemd 設定
 
@@ -131,9 +194,12 @@ google-chrome-stable --version
 apt install -y libnss3 libatk-bridge2.0-0 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxrandr2 libgbm1 libasound2
 ```
 
-### 24. 安裝系統相依套件（方法二，適用於較新版本系統）
+> 如果上述指令失敗，請改用方法二。
+{: .prompt-warning }
 
-如果步驟 23 失敗，請改用以下指令：
+### 24. 安裝系統相依套件（方法二）
+
+適用於較新版本系統：
 
 ```bash
 apt install -y libnss3 libatk-bridge2.0-0t64 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxrandr2 libgbm1 libasound2t64
@@ -175,7 +241,7 @@ npx playwright --version
   }
 }
 ```
+{: file="~/.openclaw/openclaw.json" }
 
----
-
-[返回首頁](./)
+> 設定完成後，重新啟動 OpenClaw Gateway 服務即可生效。
+{: .prompt-info }

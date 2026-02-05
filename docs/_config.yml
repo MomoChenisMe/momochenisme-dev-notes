@@ -1,3 +1,107 @@
+# The Site Configuration
+# https://github.com/cotes2020/jekyll-theme-chirpy
+
+# Site Settings
 title: OpenClaw 部署文件
-description: OpenClaw 沙盒環境部署指南
-theme: jekyll-theme-cayman
+tagline: OpenClaw 沙盒環境部署指南
+description: >-
+  OpenClaw 是一個用於建立 AI 代理沙盒環境的工具，
+  讓您可以安全地運行和測試 AI 代理程式。
+
+url: "https://MomoChenisMe.github.io"
+baseurl: "/momochenisme-dev-notes"
+
+# Theme
+theme: jekyll-theme-chirpy
+
+# Language
+lang: zh-TW
+
+# Timezone
+timezone: Asia/Taipei
+
+# Social
+github:
+  username: MomoChenisMe
+
+social:
+  name: MomoChenisMe
+  links:
+    - https://github.com/MomoChenisMe
+
+# Theme mode: light, dark, or empty for user preference
+theme_mode: ""
+
+# Avatar (optional)
+# avatar: /assets/img/avatar.png
+
+# Table of Contents
+toc: true
+
+# Pagination
+paginate: 10
+
+# Kramdown settings
+kramdown:
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: highlight
+    block:
+      line_numbers: true
+
+# Collections
+collections:
+  tabs:
+    output: true
+    sort_by: order
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      comments: false
+      toc: true
+      permalink: /posts/:title/
+  - scope:
+      path: _tabs
+      type: tabs
+    values:
+      layout: page
+      permalink: /:title/
+
+# SASSify
+sass:
+  style: compressed
+
+# Plugins
+plugins:
+  - jekyll-paginate
+  - jekyll-redirect-from
+  - jekyll-seo-tag
+  - jekyll-archives
+  - jekyll-sitemap
+
+# Jekyll Archives
+jekyll-archives:
+  enabled: [categories, tags]
+  layouts:
+    category: category
+    tag: tag
+  permalinks:
+    tag: /tags/:name/
+    category: /categories/:name/
+
+# Exclude from processing
+exclude:
+  - "*.gem"
+  - "*.gemspec"
+  - docs
+  - CHANGELOG.md
+  - README.md
+  - LICENSE
+  - Gemfile.lock
+  - node_modules
+  - vendor
