@@ -280,7 +280,7 @@ a:not(.btn):not(.nav-link):not(.post-preview):hover {
   display: inline-block;
   min-width: 2rem;
   text-align: center;
-  border-radius: 0.5rem;
+  border-radius: var(--radius-sm);
   border: none;
   padding: 0 0.4rem;
   color: var(--text-muted-color);

@@ -5,10 +5,19 @@
 .post-tag,
 .tag,
 a[href*="/tags/"] {
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-sm);
   padding: 0.25rem 0.75rem;
-  font-weight: 500;
+  font-weight: 600;
+  border: none;
   transition: var(--transition-smooth);
+}
+
+/* 覆蓋 Bootstrap btn-outline-primary 的預設樣式 */
+.post-tag.btn.btn-outline-primary {
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-border-color: transparent;
+  --bs-btn-active-border-color: transparent;
+  border: none;
 }
 
 .post-tag:hover,
@@ -52,10 +61,36 @@ a[href*="/tags/"]:hover {
   color: #8B7A6A;
 }
 
+/* 右側面板標籤（覆蓋 #panel-wrapper 的高特異性） */
+#panel-wrapper .post-tag:nth-child(5n+1) {
+  background: rgba(124, 144, 112, 0.15);
+  color: #7C9070;
+}
+
+#panel-wrapper .post-tag:nth-child(5n+2) {
+  background: rgba(212, 132, 94, 0.15);
+  color: #D4845E;
+}
+
+#panel-wrapper .post-tag:nth-child(5n+3) {
+  background: rgba(91, 155, 213, 0.15);
+  color: #5B9BD5;
+}
+
+#panel-wrapper .post-tag:nth-child(5n+4) {
+  background: rgba(155, 138, 168, 0.15);
+  color: #9B8AA8;
+}
+
+#panel-wrapper .post-tag:nth-child(5n+5) {
+  background: rgba(201, 184, 168, 0.15);
+  color: #8B7A6A;
+}
+
 /* 分類頁面標籤 */
 #tags-list .tag-wrapper,
 .tag-cloud a {
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-sm);
   transition: var(--transition-smooth);
 }
 
